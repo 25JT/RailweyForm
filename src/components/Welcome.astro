@@ -1,0 +1,40 @@
+---
+import Movimiento from "./Jsx/Movimiento.jsx";
+import Logo from "../assets/Img/Logo.png"
+import {Image} from "astro:assets"
+---
+
+<Movimiento client:load />
+
+<section class="overflow-hidden h-screen w-full" id="pagina-Container">
+        <section id="0" class="section h-screen flex flex-col justify-center items-center border-2">     
+             <div class="md:grid md:grid-cols-2 sm:flex sm:flex-col sm:2xl:flex-col " >
+                        <div class="justify-center items-center ml-4 mr-4 col-span-1">
+                                <h1 class="font-[MomoTrustDisplay] text-5xl">RESERVA TUS CITAS</h1>
+                                <br>
+                                <p class="text-justify font-[SortsMillGoudy-Italic] text-xl">
+                                        Somos la mejor aplicacion para reservas
+                                        tu citas a nivel Hispano Encuntra tu
+                                        Especialista en segudnos
+                                </p>
+                        </div>
+                        <div class="flex justify-center items-center col-span-1">
+                                <Image src={Logo} alt="Logo" class=" w-42  sm:mt-10 md:mt-0 " loading="eager" />
+                        </div>
+
+                </div>
+                        <button class="mt-30 border-2 border-black shadow-xl/20 w-60 rounded-[8px]  flex justify-center items-center text-2xl cursor-pointer hover:bg-red-200  font-[MomoTrustDisplay] text-red-500 h-1/16"
+                        onclick="scrollASection(1)">
+                                REGISTRATE AQUI
+                        </button>
+        </section>
+
+
+
+        <section id="1" class="section h-screen bg-amber-300">
+                <div></div>
+        </section>
+        <section id="2" class="section h-screen bg-red-400">
+                <div></div>
+        </section>
+</section>
