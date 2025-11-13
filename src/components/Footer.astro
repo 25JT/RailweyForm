@@ -1,0 +1,21 @@
+---
+import Logo from "../assets/Img/Logo.png"
+import {Image} from "astro:assets"
+---
+<nav class="shadow-xl/20 w-full overflow-hidden bg-white relative md:inset-y-[35vh] lg:inset-y-[40vh] inset-y-[30vh]">
+   <div class="flex justify-center w-full h-14 items-center   border-2">
+      <div class="grid grid-cols-3 gap-10  w-full">
+         <div class="flex justify-center">
+            <Image src={Logo} alt="Logo" class="w-16 h-auto" loading="eager" />
+         </div>
+         <div class="flex justify-center align-center items-center"> 
+            <h1 class="font-[MomoTrustDisplay] text-2xl text-red-500 ">RESERVAS.COM</h1>
+         </div>
+         <div class="flex justify-center align-center items-center">
+            <h1  class="font-[MomoTrustDisplay] text-2xl uppercase">FOOTER</h1>
+         </div>
+      </div>
+   </div>
+</nav>
+
+

@@ -2,6 +2,7 @@
 import Movimiento from "./Jsx/Movimiento.jsx";
 import Logo from "../assets/Img/Logo.png"
 import {Image} from "astro:assets"
+import Footer from '../components/Footer.astro'
 ---
 
 <Movimiento client:load />
@@ -31,10 +32,64 @@ import {Image} from "astro:assets"
 
 
 
-        <section id="1" class="section h-screen bg-amber-300">
-                <div></div>
+        <section id="1" class="section h-screen w-full flex flex-col ">
+                           <h1 class="font-[MomoTrustDisplay] sm:text-5xl text-3xl text-center mt-17 sm:mt-24 mb-2 sm:mb-14">REGISTRO</h1>
+                        <div class="border-2 ml-14 mr-14 sm:ml-20 sm:mr-20 md:ml-52 md:mr-52 rounded-[10px] border-gray-300 shadow-xl/20 ">
+                                <form class=" h-1/2 sm:h-96 justify-center sm:p-10 p-5 uppercase " >
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 ">
+                                                <label for="nombre" class="col-span-1 xl:text-center md:text-left">Nombre:</label>
+                                                <input type="text" placeholder="Nombre" class="mt-2 sm:mt-0 col-span-1 border-b-2 border-black" />
+                                        </div>
+                                        <br>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2">
+                                                <label for="apellido" class="col-span-1 xl:text-center md:text-left">Apellido:</label>
+                                                <input type="text" placeholder="Apellido" class="mt-2 sm:mt-0 col-span-1 border-b-2 border-black" />
+                                        </div>
+                                        <br>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2">
+                                                <label for="correo" class="col-span-1 xl:text-center md:text-left">Correo:</label>
+                                                <input type="text" placeholder="Correo" class="mt-2 sm:mt-0 col-span-1 border-b-2 border-black" />
+                                        </div>
+                                        <br>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2">
+                                                <label for="contraseña" class="col-span-1 xl:text-center md:text-left">Contraseña:</label>
+                                                <input type="text" placeholder="Contraseña" class="mt-2 sm:mt-0 col-span-1 border-b-2 border-black" />
+                                        </div>
+                                        <br>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2">
+                                                <label for="confirmar-contraseña" class="col-span-1 xl:text-center md:text-left">Confirmar Contraseña:</label>
+                                                <input type="text" placeholder="Confirmar Contraseña" class="mt-2 sm:mt-0 col-span-1 border-b-2 border-black" />
+                                        </div>
+                                        <br>
+                                        <div class="flex justify-center items-center">
+                                                <button class="border-2 border-black w-60 text-red-500 font-[MomoTrustDisplay] hover:bg-red-200 rounded-[8px] shadow-xl/20" type="submit">ENVIAR</button>
+                                        </div>
+                                        <br>
+                                        <div class="flex justify-center items-center">
+                                                <p class="text-red-500 font-[MomoTrustDisplay]">Errores</p>
+                                        </div>
+                                </form>
+                        
+                                
+                        </div>
+                
         </section>
-        <section id="2" class="section h-screen bg-red-400">
-                <div></div>
+        <section id="2" class="section h-screen flex flex-col justify-center items-center border-2">
+               <div class="md:grid md:grid-cols-2 sm:flex sm:flex-col sm:2xl:flex-col" >
+                        <div class="justify-center items-center ml-4 mr-4 col-span-1">
+                                <h1 class="font-[MomoTrustDisplay] text-5xl">RESERVA TUS CITAS</h1>
+                                <br>
+                                <p class="text-justify font-[SortsMillGoudy-Italic] text-xl">
+                                        Somos la mejor aplicacion para reservas
+                                        tu citas a nivel Hispano Encuntra tu
+                                        Especialista en segudnos
+                                </p>
+                        </div>
+                        <div class="flex justify-center items-center col-span-1">
+                                <Image src={Logo} alt="Logo" class=" w-42  sm:mt-10 md:mt-0 " loading="eager" />
+                        </div>
+
+                </div>
+               <Footer />
         </section>
 </section>
