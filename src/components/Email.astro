@@ -1,70 +1,12 @@
----
-let mensaje = "Verificando...";
-let error = false;
----
-
-<script>
-    import { ruta } from "../utils/ruta.js";
-    import gsap from "gsap";
-
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("id_token");
-
-    function mostrarMensaje(msg, isSuccess) {
-        const mensajeEl = document.getElementById("mensaje");
-        if (mensajeEl) {
-            mensajeEl.textContent = msg;
-            mensajeEl.classList.remove("text-green-600", "text-red-500", "text-gray-700");
-            if (isSuccess) {
-                mensajeEl.classList.add("text-green-600");
-                document.body.style.background = "#d1fae5";
-            } else {
-                mensajeEl.classList.add("text-red-500");
-                document.body.style.background = "#fee2e2";
-            }
-            setTimeout(() => {
-                gsap.fromTo("#card-email", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" });
-            }, 100);
-        }
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        if (!token) {
-            mostrarMensaje("Token no encontrado en el enlace.", false); 
-        } else {
-            fetch(`${ruta}/verificar-email?id_token=${token}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.success) {
-                        mostrarMensaje(data.message, true);
-                    } else {
-                        mostrarMensaje(data.message, false);
-                    }
-                })
-                .catch(() => {
-                    mostrarMensaje("Error al conectar con el servidor.", false);
-                });
-        }
-    });
-
-    const volver = document.getElementById("volver");
-    if (volver) {
-        volver.addEventListener("click", () => {
-            window.location.href = "/";
-        });
-    }
-
-</script>
-
 <div class="min-h-screen flex items-center justify-center bg-transparent">
-  <div id="card-email" class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md flex flex-col items-center animate-fade-in">
-    <p id="mensaje" class="text-lg font-semibold mb-6 text-center">
-      Verificando...
-    </p>
-    <button id="volver" class="mt-2 px-6 py-2 bg-[#ff5a5f] hover:bg-[#e04e52] text-white font-bold rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-[#ff5a5f] focus:ring-opacity-50">
-      Volver
-    </button>
-  </div>
+    <div id="card-email" class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md flex flex-col items-center animate-fade-in">
+        <p id="mensaje" class="text-lg font-semibold mb-6 text-center">
+            Verificando...
+        </p>
+        <button id="volver" class="mt-2 px-6 py-2 bg-[#ff5a5f] hover:bg-[#e04e52] text-white font-bold rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-[#ff5a5f] focus:ring-opacity-50">
+            Volver
+        </button>
+    </div>
 </div>
+<script src="../utils/emailJs.js"></script>
 
