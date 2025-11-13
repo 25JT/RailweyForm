@@ -1,0 +1,102 @@
+---
+
+---
+
+<div
+    class="flex flex-col items-center justify-center min-h-[85vh] bg-gradient-to-b from-white to-pink-50"
+>
+    <h1 class="text-2xl font-bold text-pink-500 mb-2">✨ Gestión de Cita ✨</h1>
+    <p id="mensaje" class="text-gray-600 mb-8 text-4xl font-[Poppins] ">Selecciona una acción:</p>
+
+    <div class="flex space-x-8">
+        <!-- Botón Confirmar -->
+        <button
+            id="btnConfirmar"
+            class="px-6 py-3 bg-green-500 text-white font-semibold rounded-2xl shadow-md hover:bg-green-600 transform hover:scale-105 transition-all duration-300"
+        >
+            ✅ Confirmar
+        </button>
+
+        <!-- Botón Cancelar -->
+        <button
+            id="btnCancelar"
+            class="px-6 py-3 bg-red-500 text-white font-semibold rounded-2xl shadow-md hover:bg-red-600 transform hover:scale-105 transition-all duration-300"
+        >
+            ❌ Cancelar
+        </button>
+    </div>
+</div>
+
+<script>
+    import { ruta } from "../utils/ruta.js";
+
+    async function actualizarCita(id, accion) {
+        try {
+            // Deshabilitar botones
+            const btnConfirmar = document.getElementById("btnConfirmar");
+            const btnCancelar = document.getElementById("btnCancelar");
+            btnConfirmar.disabled = true;
+            btnCancelar.disabled = true;
+
+            // Agregar atributo al <body>
+            document.body.setAttribute(
+                "data-estado",
+                accion === "confirmar" ? "confirmada" : "cancelada",
+            );
+
+            const endpoint =
+                accion === "confirmar"
+                    ? `${ruta}/confirmar-cita`
+                    : `${ruta}/cancelar-cita`;
+
+            const res = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id,
+                    estado: document.body.dataset.estado,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                document.getElementById("mensaje").textContent =
+                    accion === "confirmar"
+                        ? "✅ Tu cita ha sido confirmada con éxito"
+                        : "❌ Tu cita ha sido cancelada";
+            } else {
+                document.getElementById("mensaje").textContent =
+                    "⚠️ Hubo un problema: " + data.message;
+            }
+        } catch (error) {
+            document.getElementById("mensaje").textContent =
+                "⚠️ Error al conectar con el servidor";
+        }
+    }
+
+    window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (id) {
+            document
+                .getElementById("btnConfirmar")
+                .addEventListener("click", () =>
+                    actualizarCita(id, "confirmar"),
+                );
+            document
+                .getElementById("btnCancelar")
+                .addEventListener("click", () =>
+                    actualizarCita(id, "cancelar"),
+                );
+        } else {
+            document.getElementById("mensaje").textContent =
+                "⚠️ No se encontró el ID de la cita";
+            document.getElementById("btnConfirmar").disabled = true;
+            document.getElementById("btnCancelar").disabled = true;
+        }
+    };
+
+    //animacion
+</script>
