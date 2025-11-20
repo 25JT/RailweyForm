@@ -73,3 +73,18 @@ export function alertaCheck4(mensaje) {
     location.href = "/PrincipalCliente";
   });
 }
+
+export async function alertaConfirm(mensaje) {
+  const result = await Swal.fire({
+    title: "¿Estás seguro?",
+    text: mensaje,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí",
+    cancelButtonText: "No"
+  });
+
+  return result.isConfirmed; 
+}
