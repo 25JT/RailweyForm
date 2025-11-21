@@ -10,6 +10,8 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [react()],
 
+  adapter: node({ mode: "standalone" }),
+
   vite: {
     plugins: [tailwindcss()]
   }
