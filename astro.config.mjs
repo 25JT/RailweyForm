@@ -8,12 +8,13 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
-
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
-
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  output: 'server',
+  adapter: node({
+    mode: 'standalone' // necesario para Railway
+  }),
+
+  integrations: [react()]
 });
